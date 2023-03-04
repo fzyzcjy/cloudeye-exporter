@@ -1,6 +1,7 @@
 package collector
 
 import (
+	"crypto/tls"
 	"errors"
 	"net/http"
 	"strconv"
@@ -125,6 +126,10 @@ func genClient(c *Config, ao golangsdk.AuthOptionsProvider) (*golangsdk.Provider
 				})
 			}
 			return nil
+		},
+		// ignore https certificate https://github.com/fzyzcjy/yplusplus/issues/7316#issuecomment-1454927248
+		Transport: &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		},
 	}
 
