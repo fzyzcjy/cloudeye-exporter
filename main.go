@@ -20,6 +20,7 @@ var (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	target := r.URL.Query().Get("services")
+	logs.Logger.Infof("handler called url=%s", r.URL)
 	if target == "" {
 		http.Error(w, "'target' parameter must be specified", 400)
 		return
