@@ -117,6 +117,7 @@ func genClient(c *Config, ao golangsdk.AuthOptionsProvider) (*golangsdk.Provider
 		return nil, err
 	}
 
+	logs.Logger.Warnf("hack: make client.HTTPClient.Transport.TLSClientConfig.InsecureSkipVerify true")
 	client.HTTPClient = http.Client{
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			if client.AKSKAuthOptions.AccessKey != "" {
