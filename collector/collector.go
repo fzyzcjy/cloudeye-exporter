@@ -206,7 +206,8 @@ func (exporter *BaseHuaweiCloudExporter) collectMetricByNamespace(ctx context.Co
 }
 
 func (exporter *BaseHuaweiCloudExporter) Collect(ch chan<- prometheus.Metric) {
-	duration, err := time.ParseDuration("-10m")
+	//duration, err := time.ParseDuration("-10m")
+	duration, err := time.ParseDuration("-60m") // HACK
 	if err != nil {
 		logs.Logger.Errorln("ParseDuration -10m error:", err.Error())
 		return
