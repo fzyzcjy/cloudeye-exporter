@@ -190,6 +190,7 @@ func (exporter *BaseHuaweiCloudExporter) collectMetricByNamespace(ctx context.Co
 					wg.Done()
 				}()
 				logs.Logger.Debugf("[%s] Start to getBatchMetricData, metric count: %d", exporter.txnKey, len(tmpMetrics))
+				logs.Logger.Debugf("[%s] hack: getBatchMetricData From=%s To=%s tmpMetrics=%s", exporter.txnKey, exporter.From, exporter.To, &tmpMetrics)
 				dataList, err := getBatchMetricData(exporter.ClientConfig, &tmpMetrics, exporter.From, exporter.To)
 				if err != nil {
 					return
